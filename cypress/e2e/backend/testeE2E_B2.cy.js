@@ -105,7 +105,7 @@ describe("Teste CRUD de usuários", () => {
         Authorization: Cypress.env("token"),
       },
     })
-    // Verifica se a exclusão foi bem-sucedida
+    //Verifica se a exclusão foi bem-sucedida
     .then((response) => {
       expect(response.status).to.eq(200)
       expect(response.body).to.have.property("message", "Registro excluído com sucesso")

@@ -118,7 +118,7 @@ describe("Teste CRUD de produtos", () => {
       headers: {
         Authorization: Cypress.env("token"),
       },
-      failOnStatusCode: false,  // Não falhar caso o produto não seja encontrado
+      failOnStatusCode: false,
     })
     //Verifica se o produto não existe mais retornando 400 para não encontrado
     .then((response) => {
