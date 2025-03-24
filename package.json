@@ -1,0 +1,7 @@
+{
+  "name": "NttChallenge",
+  "version": "1.0.0",
+  "description": "Desafio proposto utilizando cypress para testes 2e2 front-end",
+  "main": "index.js",
+  "license": "MIT"
+}
