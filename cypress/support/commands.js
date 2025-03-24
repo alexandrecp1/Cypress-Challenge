@@ -1,6 +1,6 @@
 //COMANDOS PARA UTILIZAÇÃO DO FRONT-END ->
 
-// Comando para login Cliente.
+//Comando para login Cliente.
 Cypress.Commands.add('loginClient', () => {
   //Dados da config.js
   const email = Cypress.env('email')
@@ -20,7 +20,7 @@ Cypress.Commands.add('loginClient', () => {
     if ($body.find('.alert').length > 0) {
       cy.log('Login falhou! Criando nova conta...')
 
-      // Criar nova conta
+      //Criar nova conta
       cy.visit('https://front.serverest.dev/cadastrarusuarios')
       cy.get('[data-testid="nome"]').type(user)
       cy.get('[data-testid="email"]').type(email)
@@ -32,7 +32,7 @@ Cypress.Commands.add('loginClient', () => {
     cy.url().should('include', '/home')
 })
 
-// Comando para login Cliente.
+//Comando para login Cliente.
 Cypress.Commands.add('loginAdmin', () => {
   //Dados da config.js
   const email = Cypress.env('emailAdmin')
@@ -52,7 +52,7 @@ Cypress.Commands.add('loginAdmin', () => {
     if ($body.find('.alert').length > 0) {
       cy.log('Login falhou! Criando nova conta...')
 
-      // Criar nova conta
+      //Criar nova conta
       cy.visit('https://front.serverest.dev/cadastrarusuarios')
       cy.get('[data-testid="nome"]').type(user)
       cy.get('[data-testid="email"]').type(email)
@@ -74,9 +74,9 @@ Cypress.Commands.add('visitSite', (page = 'home') => {
       carrinho: '/carrinho',
       lista: 'minhaListaDeProdutos',
       minhaConta: '/minha-conta'
-    };
+    }
   
-    const path = routes[page];
+    const path = routes[page]
   
     if (path !== undefined) {
       cy.visit(path)
@@ -87,11 +87,11 @@ Cypress.Commands.add('visitSite', (page = 'home') => {
 
 //Comando para acrescentar algum produto utilizando campos vazios para serem preenchidos pelo tester/dev posteriormente.
 Cypress.Commands.add('adicionarProduto', (produto) => {
-  // Clica no botão para adicionar um novo produto
+  //Clica no botão para adicionar um novo produto
   cy.get('[data-testid="cadastrarProdutos"]').click()
 
   //Gerando um nome aleatório para o produto (Para evitar repetições na hora do cadastro)
-  const nomeProduto = `${produto.nome} - ${Date.now()}`;
+  const nomeProduto = `${produto.nome} - ${Date.now()}`
   //Preenche os campos do produto
   cy.get('[data-testid="nome"]').type(nomeProduto)
   cy.get('[data-testid="preco"]').type(produto.preco)
@@ -142,7 +142,7 @@ Cypress.Commands.add('loginAPI', (isAdmin = false) => {
   const email = isAdmin ? Cypress.env('emailAPI') : Cypress.env('email')
   const password = isAdmin ? Cypress.env('senhaAPI') : Cypress.env('senha')
   const nome = isAdmin ? Cypress.env('userAPI') : Cypress.env('user')
-  const apiUrl = Cypress.env('apiUrl'); // Base da API definida no config
+  const apiUrl = Cypress.env('apiUrl')
 
   //Requisição de login do usuario usando a URL dinamica e continuando mesmo se falhar o status.
   cy.request({
@@ -172,12 +172,12 @@ Cypress.Commands.add('loginAPI', (isAdmin = false) => {
           expect(newLoginResponse.status).to.eq(200)
           expect(newLoginResponse.body).to.have.property('authorization')
           Cypress.env('token', newLoginResponse.body.authorization)
-        });
-      });
+        })
+      })
     } else {
       expect(loginResponse.status).to.eq(200)
       expect(loginResponse.body).to.have.property('authorization')
       Cypress.env('token', loginResponse.body.authorization)
     }
-  });
-});
+  })
+})
