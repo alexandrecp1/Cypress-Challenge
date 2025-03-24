@@ -3,7 +3,7 @@ describe('Teste E2E CLIENTE | Fluxo de compra - Caminho Feliz', () => {
     //Processo de login
     cy.visitSite()
     cy.loginClient()
-  });
+  })
 
   it('Deve adicionar um produto ao carrinho e finalizar a compra', () => {
     //Verifica se há produtos disponíveis antes de continuar
@@ -26,7 +26,7 @@ describe('Teste E2E CLIENTE | Fluxo de compra - Caminho Feliz', () => {
       .invoke('text')
       .then((productName) => {
         cy.contains(productName.trim()).should('be.visible')
-      });
+      })
 
     //Finaliza a compra
     cy.get('[data-testid="adicionar carrinho"]').click()
